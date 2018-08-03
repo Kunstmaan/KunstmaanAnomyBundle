@@ -5,6 +5,20 @@ services:
     public: false
     bind:
       $backupDir: '%kunstmaan_anomy.backup_dir%'
+      $conn: '@database.connection.anomy'
 
   Kunstmaan\AnomyBundle\:
     resource: '../../*'
+
+  database.connection.anomy:
+    class: Doctrine\DBAL\Connection
+    factory: Doctrine\DBAL\DriverManager::getConnection
+    arguments:
+      $params:
+        driver:    pdo_mysql
+        host:      '%database_host%'
+        port:      ~
+        user:      '%kunstmaan_anomy.database_user%'
+        password:  '%kunstmaan_anomy.database_password%'
+        dbname:    'anomy'
+        charset:   UTF8

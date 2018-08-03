@@ -23,6 +23,8 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('backup_dir')->end()
+                ->scalarNode('database_user')->end()
+                ->scalarNode('database_password')->end()
             ->end();
         return $treeBuilder;
     }

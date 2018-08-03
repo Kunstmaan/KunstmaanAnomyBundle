@@ -2,6 +2,7 @@
 
 namespace Kunstmaan\AnomyBundle\Command;
 
+use Kunstmaan\AnomyBundle\Exceptions\AnomyException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
