@@ -8,6 +8,12 @@
         "anonymization",
         "neuralyzer"
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:Kunstmaan/KunstmaanAnomyBundle.git"
+        }
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -20,7 +26,7 @@
         "php": ">=5.6",
         "symfony/symfony": "~3.4",
         "doctrine/orm": "^2.2.3",
-        "edyan/neuralyzer": "~v3.1.0"
+        "edyan/neuralyzer": "~2.0"
     },
     "autoload": {
         "psr-4": {
