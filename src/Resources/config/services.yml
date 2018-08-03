@@ -1,14 +1,12 @@
 services:
   _defaults:
-    autowire: true
     autoconfigure: true
-    public: false
-    bind:
-      $backupDir: '%kunstmaan_anomy.backup_dir%'
-      $conn: '@database.connection.anomy'
 
-  Kunstmaan\AnomyBundle\:
-    resource: '../../*'
+  Kunstmaan\AnomyBundle\Command\AnonymizeDatabaseCommand:
+    arguments:
+      - '%kunstmaan_anomy.backup_dir%'
+      - '%kunstmaan_anomy.config_file%'
+      - '@database.connection.anomy'
 
   database.connection.anomy:
     class: Doctrine\DBAL\Connection

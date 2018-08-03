@@ -4,8 +4,8 @@ namespace Kunstmaan\AnomyBundle\Command;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
-use Symfony\Component\Console\Command\Command;
 use Inet\Neuralyzer\Configuration\Reader;
+use Symfony\Component\Console\Command\Command;
 
 /**
  * Class AnonymizeDatabaseCommand
@@ -21,6 +21,9 @@ class AnonymizeDatabaseCommand extends AbstractCommand
     /** @var string */
     private $backupDir;
 
+    /** @var string */
+    private $configFile;
+
     /** @var Connection */
     private $conn;
 
@@ -34,13 +37,15 @@ class AnonymizeDatabaseCommand extends AbstractCommand
      * AnonymizeDatabaseCommand constructor.
      *
      * @param string     $backupDir
+     * @param string     $configFile
      * @param Connection $conn
      */
-    public function __construct($backupDir, Connection $conn)
+    public function __construct($backupDir, $configFile, Connection $conn)
     {
         parent::__construct(null);
 
         $this->backupDir = $backupDir;
+        $this->configFile = $configFile;
         $this->conn = $conn;
 
         $this->connParams = $params = $this->conn->getParams();
@@ -80,6 +85,14 @@ EOT
     protected function doExecute()
     {
         $this->logNotice('Welcome to the anonymization for your database! It will be my pleasure to help you on your yourney.');
+
+        // Anon READER
+        if (!file_exists($this->configFile)) {
+            $this->logError('There is no anon.yml file in your .skylab directory');
+        }
+        else {
+            $this->reader = new Reader($this->configFile);;
+        }
 
         $this->importDatabase();
         $this->runPreAnonymizeQueries();
