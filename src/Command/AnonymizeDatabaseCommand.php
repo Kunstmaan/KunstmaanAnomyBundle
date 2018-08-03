@@ -61,17 +61,6 @@ class AnonymizeDatabaseCommand extends AbstractCommand
             ->setHelp(
                 <<<EOT
 The <info>kuma:anonymize:database</info> command will import the backup in a temp database.
-
-- Run queries after importing
-- Decerypt database
-- Run anonymizer with:
-    - Execution of pre queries
-    - Anonymization
-    - Execution of post queries
- - Dump database to file
- - Remove temporary database
-
-<info>php anomy.phat import-db will /home/projects/will/data/will /home/projects/will/backup</info>
 EOT
             );
     }

@@ -1,7 +1,7 @@
 {
     "name": "kunstmaan/anomy-bundle",
     "type": "symfony-bundle",
-    "description": "The Kunstmaan Anomy Bundle.",
+    "description": "The Kunstmaan Anomy Bundle provides a symfony command to use a mysql dump and anonymize it wiht Faker.",
     "keywords": [
         "kunstmaan",
         "cms",
