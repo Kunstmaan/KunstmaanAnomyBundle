@@ -1,0 +1,10 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      $backupDir: '%kunstmaan_anomy.backup_dir%'
+
+  Kunstmaan\AnomyBundle\:
+    resource: '../../*'
