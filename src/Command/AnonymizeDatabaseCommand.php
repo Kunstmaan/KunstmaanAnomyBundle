@@ -15,10 +15,6 @@ use Symfony\Component\Console\Command\Command;
  */
 class AnonymizeDatabaseCommand extends AbstractCommand
 {
-    const CONNECTION_NAME = 'anomy';
-
-    const DATABASE_NAME = 'anomy';
-
     /** @var string */
     private $backupDir;
 
@@ -138,12 +134,12 @@ EOT
     {
         $this->logTask('Creating new database to anonymize');
 
-        $databaseExists = in_array(self::DATABASE_NAME, $this->rootConn->getSchemaManager()->listDatabases());
+        $databaseExists = in_array($this->conn->getParams()['dbname'], $this->rootConn->getSchemaManager()->listDatabases());
 
         if ($databaseExists) {
-            $this->logNotice(sprintf('Database %s exists!', self::DATABASE_NAME));
+            $this->logNotice(sprintf('Database %s exists!', $this->conn->getParams()['dbname']));
         } else {
-            $this->rootConn->getSchemaManager()->createDatabase(self::DATABASE_NAME);
+            $this->rootConn->getSchemaManager()->createDatabase($this->conn->getParams()['dbname']);
         }
     }
 
